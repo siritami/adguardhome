@@ -17,7 +17,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
 && wget --tries=3 $(curl -s $URL | grep browser_download_url | egrep -o 'http.+\.\w+' | grep -i "$(dpkg --print-architecture)" | grep -m 1 -i "$(echo $OS)") \
 && tar -xvzf *.tar.gz \
 && rm *.tar.gz \
-&& mkdir /opt/AdGuardHome/config \
+&& mkdir /opt/adguardhome/conf \
 && chmod a+rx /start_agh.sh \
 && apt-get purge -y -q --auto-remove wget curl \
 && apt-get clean \
