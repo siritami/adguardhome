@@ -1,7 +1,5 @@
 bind_host: 0.0.0.0
 bind_port: 3000
-auth_name: admin
-auth_pass: admin
 coredns:
   port: 53
   protection_enabled: true
