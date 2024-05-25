@@ -1,14 +1,33 @@
-FROM alpine
-MAINTAINER Ash McKenzie <ash@the-rebellion.net>
+#
+# This is unofficial dockerized precompiled AdGuardHome within a debian:stable-slim image.
+#
 
-VOLUME /data
+FROM debian:stable-slim
+MAINTAINER Bob <kcey@mail.ru>
 
-RUN apk update && apk add bash curl ca-certificates
+COPY AdGuardHome.yaml /AdGuardHome.yaml
+COPY start_agh.sh /start_agh.sh
 
-ADD start.sh /
-ADD data/ /data/
-ADD AdGuardHome/ /app/
+RUN export DEBIAN_FRONTEND=noninteractive \
+&& export URL=https://api.github.com/repos/AdguardTeam/AdGuardHome/releases/latest \
+&& export OS="linux" \
+&& apt-get update && apt-get upgrade -y \
+&& apt-get install --no-install-recommends -y ca-certificates wget curl \
+&& cd /opt \
+&& wget --tries=3 $(curl -s $URL | grep browser_download_url | egrep -o 'http.+\.\w+' | grep -i "$(dpkg --print-architecture)" | grep -m 1 -i "$(echo $OS)") \
+&& tar -xvzf *.tar.gz \
+&& rm *.tar.gz \
+&& mkdir /opt/AdGuardHome/config \
+&& chmod a+rx /start_agh.sh \
+&& apt-get purge -y -q --auto-remove wget curl \
+&& apt-get clean \
+&& setcap 'cap_net_bind_service=+eip' /opt/adguardhome/AdGuardHome \
+&& cd / \
+&& rm -rf /var/lib/apt/lists/* /var/tmp/* /tmp/*
 
-WORKDIR /data
+VOLUME [ "/opt/AdGuardHome/config" ]
 
-CMD "/start.sh"
+EXPOSE 53/tcp 53/udp 67/udp 68/udp 80/tcp 443/tcp 443/udp 853/tcp\
+	853/udp 3000/tcp 3000/udp 5443/tcp 5443/udp 6060/tcp
+
+ENTRYPOINT ["/start_agh.sh"]
