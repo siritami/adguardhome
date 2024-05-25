@@ -5,7 +5,7 @@
 FROM debian:stable-slim
 MAINTAINER Bob <kcey@mail.ru>
 
-COPY AdGuardHome.yaml /opt/adguardhome/conf/AdGuardHome.yaml
+COPY AdGuardHome.yaml /opt/AdGuardHome/config/AdGuardHome.yaml
 COPY start_agh.sh /start_agh.sh
 
 RUN export DEBIAN_FRONTEND=noninteractive \
