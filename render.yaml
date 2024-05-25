@@ -1,8 +1,0 @@
-services:
-- type: web
-  name: adguardhome
-  env: docker
-  plan: free
-  region: singapore
-  dockerfilePath: ./Dockerfile
-  dockerContext: .
