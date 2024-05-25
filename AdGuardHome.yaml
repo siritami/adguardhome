@@ -2,3 +2,21 @@ bind_host: 0.0.0.0
 bind_port: 3000
 auth_name: admin
 auth_pass: admin
+coredns:
+  port: 53
+  protection_enabled: true
+  filtering_enabled: true
+  safebrowsing_enabled: false
+  safesearch_enabled: false
+  parental_enabled: false
+  parental_sensitivity: 0
+  blocked_response_ttl: 10
+  querylog_enabled: true
+  upstream_dns:
+  - tls://1.1.1.1
+  - tls://1.0.0.1
+filters:
+- url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
+  name: AdGuard DNS Filter
+  enabled: true
+user_rules: []
