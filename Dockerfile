@@ -26,7 +26,6 @@ RUN export DEBIAN_FRONTEND=noninteractive \
 
 VOLUME [ "/opt/AdGuardHome/config" ]
 
-EXPOSE 53/tcp 53/udp 67/udp 68/udp 80/tcp 443/tcp 443/udp 853/tcp\
-	853/udp 3000/tcp 3000/udp 5443/tcp 5443/udp 6060/tcp
+EXPOSE 53/tcp 53/udp 67/udp 68/udp 80/tcp 443/tcp 443/udp 853/tcp 853/udp 3000/tcp 3000/udp 5443/tcp 5443/udp 6060/tcp
 
 ENTRYPOINT ["/start_agh.sh"]
