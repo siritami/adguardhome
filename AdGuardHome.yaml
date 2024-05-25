@@ -18,15 +18,3 @@ filters:
   name: AdGuard DNS Filter
   enabled: true
 user_rules: []
-querylog:
-  dir_path: ""
-  ignored: []
-  interval: 2160h
-  size_memory: 1000
-  enabled: false
-  file_enabled: false
-statistics:
-  dir_path: ""
-  ignored: []
-  interval: 2160h
-  enabled: false
