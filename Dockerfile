@@ -21,7 +21,6 @@ RUN export DEBIAN_FRONTEND=noninteractive \
 && chmod a+rx /start_agh.sh \
 && apt-get purge -y -q --auto-remove wget curl \
 && apt-get clean \
-&& setcap 'cap_net_bind_service=+eip' /opt/adguardhome/AdGuardHome \
 && cd / \
 && rm -rf /var/lib/apt/lists/* /var/tmp/* /tmp/*
 
