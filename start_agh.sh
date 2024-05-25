@@ -6,4 +6,4 @@ fi
 
 chmod 600 /opt/adguardhome/conf/AdGuardHome.yaml
 
-/opt/adguardhome/ -c /conf/AdGuardHome.yaml
+/opt/adguardhome/adguardhome -c /conf/AdGuardHome.yaml
